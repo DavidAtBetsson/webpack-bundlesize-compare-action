@@ -92,7 +92,7 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/download-artifact@v3
-      - uses: github/webpack-bundlesize-compare-action@v1.8.2
+      - uses: DavidAtBetsson/webpack-bundlesize-compare-action@v1.0.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           current-stats-json-path: ./head-stats/stats.json
