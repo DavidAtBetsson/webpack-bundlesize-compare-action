@@ -23,6 +23,7 @@ async function run(): Promise<void> {
     const currentStatsJsonPath = core.getInput('current-stats-json-path')
     const baseStatsJsonPath = core.getInput('base-stats-json-path')
     const title = core.getInput('title') ?? ''
+    const commentUsername = core.getInput('username') ?? 'github-actions[bot]'
     const {rest} = getOctokit(token)
 
     const [currentStatsJson, baseStatsJson, {data: comments}] =
@@ -40,7 +41,7 @@ async function run(): Promise<void> {
 
     const [currentComment, ...restComments] = comments.filter(
       comment =>
-        comment.user?.login === 'github-actions[bot]' &&
+        comment.user?.login === commentUsername &&
         comment.body &&
         comment.body.includes(identifierComment)
     )
